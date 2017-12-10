@@ -9,6 +9,7 @@ class Atm < ApplicationRecord
   private
 
   def invalidate_atms_cache
+    Rails.logger.debug "invalidate_atms_cache. id: #{id}, lat: #{lat}, lon: #{lon}"
     ActiveSupport::Notifications.instrument(:atm_saved, lat: lat, lon: lon)
   end
 end
