@@ -15,7 +15,7 @@ class NearestAtmsFinderService < BaseService
     def handle_change(lat, lon)
       # Удалим из кэша результаты для точек, попадающих в область с заданным радиусом от нового/удаленного банкомата
       Rails.logger.debug "handle_change. lat: #{lat}, lon: #{lon}"
-      CACHE.reject { |k,_| DistanceBetweenPointsService.new(point1: k, point2: [lat, lon]).call <= INVALIDATE_RADIUS_M }
+      CACHE.reject! { |k,_| DistanceBetweenPointsService.new(point1: k, point2: [lat, lon]).call <= INVALIDATE_RADIUS_M }
     end
   end
 
