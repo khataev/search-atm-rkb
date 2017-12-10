@@ -1,5 +1,6 @@
 class NearestAtmsFinderService < BaseService
-  EARTH_RADIUS_KM = 6373
+  EARTH_RADIUS_KM = 6_373
+  INVALIDATE_RADIUS_M = 1_000
   CACHE = {}
 
   attribute :location, Array
@@ -9,6 +10,11 @@ class NearestAtmsFinderService < BaseService
   class << self
     def clear_cache
       CACHE.clear
+    end
+
+    def handle_change(lat, lon)
+      # Удалим из кэша результаты для точек, попадающих в область с заданным радиусом от нового/удаленного банкомата
+      CACHE.reject { |k,_| DistanceBetweenPointsService.new(point1: k, point2: [lat, lon]) <= INVALIDATE_RADIUS_M }
     end
   end
 

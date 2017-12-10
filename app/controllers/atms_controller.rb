@@ -25,7 +25,7 @@ class AtmsController < ApplicationController
   end
 
   def search
-    @error_message = 'Неверные параметры поиска' unless params[:lat] && params[:lon]
+    @error_message = 'Неверные параметры поиска' if params[:lat].blank? || params[:lon].blank?
     srv = NearestAtmsFinderService.new(location: [params[:lat].to_f, params[:lon].to_f])
     @result = srv.()
     @cache_used = srv.cache_used
