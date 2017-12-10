@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    title CreditCalcBpl
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'true'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'true'
+  body
+    .container
+      .row
+        .col-md-3.left-nav
+          span.glyphicon.glyphicon-home
+          = link_to 'Домой', root_path
+      .row
+        p.notice= notice
+        p.alert= alert
+      .row
+        = yield
+
+
+          / Bootstrap core JavaScript
+          / ==================================================
+          / Placed at the end of the document so the pages load faster
