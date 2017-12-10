@@ -9,9 +9,12 @@ html
   body
     .container
       .row
-        .col-md-3.left-nav
+        .col-md-8.left-nav
           span.glyphicon.glyphicon-home
+          | &nbsp
           = link_to 'Домой', root_path
+          | &nbsp | &nbsp
+          = link_to 'Поиск ближайших банкоматов', find_nearest_atms_path
       .row
         p.notice= notice
         p.alert= alert

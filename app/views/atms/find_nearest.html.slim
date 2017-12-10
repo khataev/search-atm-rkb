@@ -1,0 +1,16 @@
+h2 Поиск ближайших банкоматов
+.row
+  .col-md-4
+    h3 Ваши координаты
+    = form_tag search_atms_path, method: :post, remote: true
+      .form-group
+        = label_tag :name, 'Широта'
+        = number_field_tag :lat, nil, placeholder: 'Широта', class: 'text_field form-control', step: 0.000001, in: -90..90
+      .form-group
+        = label_tag :name, 'Долгота'
+        = number_field_tag :lon, nil, placeholder: 'Долгота', class: 'text_field form-control', step: 0.000001, in: -180..180
+      = submit_tag 'Найти', class: 'btn btn-success pull-right'
+  .col-md-1
+  .col-md-7
+    h3 Результаты
+    .search-results

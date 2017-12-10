@@ -1,0 +1,17 @@
+.row
+  h1 Добавление нового банкомата
+  = form_for @atm do |f|
+    .col-md-8
+      ul.atm-errors
+        - @atm.errors.full_messages.each do |message|
+          li = message
+      .form-group
+        = f.label :name, 'Название'
+        = f.text_field :name, placeholder: 'Название/адрес', class: 'form-control'
+      .form-group
+        = f.label :name, 'Широта'
+        = f.number_field :lat, placeholder: 'Широта', class: 'text_field form-control', step: 0.000001, in: -90..90
+      .form-group
+        = f.label :name, 'Долгота'
+        = f.number_field :lon, placeholder: 'Долгота', class: 'text_field form-control', step: 0.000001, in: -180..180
+      = f.submit 'Сохранить', class: 'btn btn-success pull-right'

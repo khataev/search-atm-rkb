@@ -4,6 +4,7 @@ class NearestAtmsFinderService < BaseService
 
   attribute :location, Array
   attribute :use_cash, Boolean, default: true
+  attribute :cache_used, Boolean
 
   class << self
     def clear_cache
@@ -14,8 +15,10 @@ class NearestAtmsFinderService < BaseService
   def call
     return [] unless location&.size == 2
     if use_cash && CACHE.has_key?(location)
+      self.cache_used = true
       CACHE[location]
     else
+      self.cache_used = false
       CACHE[location] = get_5_nearest_atms(location)
     end
   end

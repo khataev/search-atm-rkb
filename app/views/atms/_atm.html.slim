@@ -1,0 +1,23 @@
+- disable_delete ||= false
+.row.panel.panel-info
+  .panel-heading
+    .row
+      .col-md-10
+        = text_field_tag :name, atm.name, class: 'form-control', readonly: true
+      .col-md-2
+        - unless disable_delete
+          = link_to 'Удалить', atm, class: 'btn btn-danger', method: :delete, data: {confirm: 'Вы уверены?'}
+  .panel-body
+    .col-md-5
+      .form-group
+        .col-md-6
+          = label_tag :lat, 'Широта:', class: 'pull-right'
+        .col-md-6
+          = text_field_tag :lat, "#{ '%.6f' % atm.lat}", class: 'form-control', readonly: true
+    .col-md-5
+      .form-group
+        .col-md-6
+          = label_tag :lon, 'Долгота:', class: 'pull-right'
+        .col-md-6
+          = text_field_tag :lon, "#{ '%.6f' % atm.lon}", class: 'form-control', readonly: true
+

@@ -1,0 +1,12 @@
+.row
+  .col-md-10
+    h1 Список банкоматов
+.row
+  .col-md-10
+    - if @atms.empty?
+      p База банкоматов пуста
+    - else
+      = render @atms
+
+.row
+  p= link_to 'Добавить банкомат', new_atm_path

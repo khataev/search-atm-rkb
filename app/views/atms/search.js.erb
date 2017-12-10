@@ -1,0 +1,13 @@
+search_results_div = $('.search-results');
+search_results_div.html('');
+<% if @error_message %>
+  search_results_div.html('<%= j @error_message %>')
+<% else %>
+  <% if @result.blank? %>
+    search_results_div.html('<%= @cache_used ? 'Данные получены из кэша' : 'Данные получены из БД' %>')
+    search_results_div.append('Ничего не найдено')
+  <% else %>
+    search_results_div.html('<%= @cache_used ? 'Данные получены из кэша' : 'Данные получены из БД' %>')
+    search_results_div.append('<%= j render @result, disable_delete: true %>')
+  <% end %>
+<% end %>
